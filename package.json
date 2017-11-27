@@ -1,0 +1,27 @@
+{
+  "name": "movie-history-malicious-humans",
+  "version": "1.0.0",
+  "description": "You will be split up into teams, and your team will build a new application to keep track of movies that you have seen, and want to see, with your own ratings. * https://www.themoviedb.org * Request an api key",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nss-day-cohort-22/movie-history-malicious-humans.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nss-day-cohort-22/movie-history-malicious-humans/issues"
+  },
+  "homepage": "https://github.com/nss-day-cohort-22/movie-history-malicious-humans#readme",
+  "devDependencies": {
+    "firebase": "^4.6.2",
+    "grunt-browserify": "^5.2.0",
+    "grunt-contrib-uglify": "^3.2.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^20.1.0",
+    "jquery": "^3.2.1"
+  }
+}
