@@ -1,3 +1,6 @@
+//author: Kristen
+//functionality: allows the movies from the database to be written to the DOM
+
 const $ = require("jquery")
 
 const movieCard = (movie) => {
