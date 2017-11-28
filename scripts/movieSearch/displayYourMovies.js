@@ -17,42 +17,39 @@ const displayYourMovies = Object.create(null, {
                 $.ajax({
                     "url": "./scripts/movieSearch/testUserDB.json",
                     "method": "GET"
-                }).then( userMovies => {
+                }).then( userMoviesDB => {
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
                     debugger
-                    userMovies.forEach( yourMovie => {
-                        return authorized.auth().activeUser.getToken(true).then( //gets token of current authorized user
-                            userToken => {
-                                if(userToken === yourMovie.userId) { //the authorized user token is equal to the userId on the userMovie database
-                                    movieDB.forEach( currentMovie => { //iterate through the movies in the trackedMovies database
+                    userMoviesDB.userMovie.forEach( yourMovie => {
+                        const activeUserId = authorized.activeUser.uid
+                        if(activeUserId === yourMovie.userId) { //the authorized user id is equal to the userId on the userMovie database
+                            movieDB.trackedMovies.forEach( currentMovie => { //iterate through the movies in the trackedMovies database
+
+                                if(currentMovie.movieId === yourMovie.movieId) { //when the movie id in the trackedMovies database equals the movieId on the userMovie database
         
-                                        if(currentMovie.movieId === yourMovie.movieId) { //when the movie id in the trackedMovies database equals the movieId on the userMovie database
-        
-                                            //use the imported movieCard function to create a movie card and append it to the searchYourMovies section of the DOM
-                                            movieCard(currentMovie)
+                                    //use the imported movieCard function to create a movie card and append it to the searchYourMovies section of the DOM
+                                    movieCard(currentMovie)
                                             
-                                            //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
-                                            if(yourMovie.watched === true) {
-                                                //adds movie rating and adds the class of "watched" to the movie card 
-                                                $(".movieCard").addClass("watched").append(`
+                                    //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
+                                    if(yourMovie.watched === true) {
+                                        //adds movie rating and adds the class of "watched" to the movie card 
+                                        $(".movieCard").addClass("watched").append(`
                                                     <div>
                                                         <p id="movie_rating">Rating: ${yourMovie.rating}</p> //change to display stars
                                                     </div>
                                                 `)
-                                            } else {
-                                                //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
-                                                $(".movieCard").addClass("unwatched").append(`
+                                    } else {
+                                        //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
+                                        $(".movieCard").addClass("unwatched").append(`
                                                     <div>
                                                         <a href="#" id="movie_watched">Watched</a>
                                                     </div>
                                                 `)
-                                            }
+                                    }
                 
-                                        }
-                                    })
-                                } 
-                            }
-                        )
+                                }
+                            })
+                        } 
                     })
                 })
             })
