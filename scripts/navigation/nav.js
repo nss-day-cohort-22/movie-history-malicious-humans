@@ -73,6 +73,8 @@ const navBuilder = Object.create(null, {
             // create the ul element that the nav items will be appended to
 
             let navList = document.createElement("ul")
+            navList.id = "navListId"
+            $("#header").html(navList)
 
             // execute a for each method on the array of link objects
 
@@ -86,35 +88,36 @@ const navBuilder = Object.create(null, {
                 // represents the current user display
 
                 if (link.linkId === "currentUserDisplay") {
-
+                    if (booVal === true) {
                     // if the the link object is the current user display link,
                     // capture the current user object from the authentication object
                     // and store it in a variable
 
-                    let activeUserObj = auth.activeUser
+                        let activeUserObj = auth.activeUser
                     
-                    // create an h2 element to display the current user
+                        // create an h2 element to display the current user
 
-                    currentLink = document.createElement("h2")
+                        currentLink = document.createElement("h2")
 
-                    // add the class
+                        // add the class
 
-                    currentLink.classList.add(`${link.linkClass}`)
+                        currentLink.classList.add(`${link.linkClass}`)
 
-                    // add the id
+                        // add the id
 
-                    currentLink.id = `${link.linkId}`
+                        currentLink.id = `${link.linkId}`
 
-                    // add the users email in as the text for the h2 element
+                        // add the users email in as the text for the h2 element
 
-                    currentLink.appendChild(document.createTextNode(activeUserObj.email))
+                        currentLink.appendChild(document.createTextNode(activeUserObj.email))
 
-                    // check to see if the boolean passed in matches the boolean
-                    // on the link object. If it does not match, hide the link
+                        // check to see if the boolean passed in matches the boolean
+                        // on the link object. If it does not match, hide the link
+                    
+                        if (booVal !== link.adminView) {
+                            currentLink.classList.add("hidden")
+                        }
 
-
-                    if (booVal !== link.adminView) {
-                        currentLink.classList.add("hidden")
                     }
 
 
@@ -152,14 +155,11 @@ const navBuilder = Object.create(null, {
 
 
                 // append the newly created link to the navList ul
-
-                navList.appendChild(currentLink)
+                $("#navListId").append(currentLink)
             })
 
 
-            // inject the navList into the DOM via jquery .html method
 
-            $("#header").html(navList)
 
             // inject welcome text to the dom via jquery .html method
 
@@ -266,6 +266,13 @@ const navBuilder = Object.create(null, {
                 // add the welcome div to the DOM via jquery .html method
 
                 $("#welcomePage").html(welcomeDiv)
+
+                $("#logOutLink").on("click", function () {
+                    let auth = require("../authorization/authorization")
+
+                    auth.logOut()
+
+                })
 
                 // add an event listener to the sign In button
 
