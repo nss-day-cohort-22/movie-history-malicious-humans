@@ -1,6 +1,8 @@
 const $ = require("jquery")
 const firebase = require("firebase")
 
+const firebaseURL = "https://movie-nutshell.firebaseio.com/trackedMovies"
+
 const getMovieIdInTrackedDb = () => {
     return $.ajax({
         "url": `${firebaseURL}/.json`,
