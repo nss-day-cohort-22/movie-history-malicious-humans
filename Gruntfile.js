@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ["**/scripts/**/*.js", "!node_modules/**/*.js", ],
-                tasks: ["eslint", "browserify", "uglify"],
+                tasks: ["eslint", "browserify", ],
                 options: {
                     spawn: false,
                 },
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    "build/bundle.js": ["scripts/main/main.js"],
+                    "build/bundle.js": ["scripts/main.js"],
                     
                 },
             },
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
     
 
     // Default task(s).
-    grunt.registerTask("default", ["browserify", "uglify", "eslint", "watch"])
+    grunt.registerTask("default", ["browserify", "eslint", "watch"])
 
 
 }
