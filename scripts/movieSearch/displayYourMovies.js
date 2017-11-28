@@ -4,21 +4,16 @@
 const firebase = require("firebase")
 const $ = require("jquery")
 const movieCard = require("./movieCard")
+const mainDB = require("./movieFactory")
 
 const displayYourMovies = Object.create(null, {
     "init": {
         value: function () {
-            $.ajax({
-                url: "https://movie-nutshell.firebaseio.com/trackedMovies", //gets all tracked movies in database
-                method: "GET"
-            }).then( movieDB => {
-                $.ajax({
-                    url: "https://movie-nutshell.firebaseio.com/userMovie", //gets the relationship between the users and the tracked movies
-                    method: "GET"
-                }).then( userMovies => {
+            mainDB.trackedMovies().then( movieDB => { 
+                mainDB.userMovie().then( userMovies => {
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
                     userMovies.forEach( yourMovie => {
-                        return firebase.auth().currentUser.getToken(true).then( //gets token of current authorized user
+                        return firebase.auth().activeUser.getToken(true).then( //gets token of current authorized user
                             userToken => {
                                 if(userToken === yourMovie.userId) { //the authorized user token is equal to the userId on the userMovie database
                                     movieDB.forEach( currentMovie => { //iterate through the movies in the trackedMovies database
