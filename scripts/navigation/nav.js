@@ -1,3 +1,4 @@
+
 // Author: Garrett Ward
 // Functionality: Builds navbar. Only displays log in/sign up if no user is logged in.
 // If user is logged in displays buttons for site functionality as well as log out button.
@@ -24,6 +25,7 @@ const navBuilder = Object.create(null, {
                 // name an id for the link
                 "linkId": "findMoviesLink",
                 // admin view for true if user login is required to view
+
                 "adminView": true
             },
             {
@@ -36,7 +38,9 @@ const navBuilder = Object.create(null, {
                 "display": "Current User",
                 "linkClass": "currentUserDisplayClass",
                 "linkId": "currentUserDisplay",
+
                 "adminView": true,
+
             },
             {
                 "display": "Sign In / Register",
@@ -52,6 +56,7 @@ const navBuilder = Object.create(null, {
             }
         ]        
     },
+
 
     // create a key thats value will be a function. The function will accept a boolean 
     // value for the arguement. 
@@ -116,6 +121,7 @@ const navBuilder = Object.create(null, {
                     }
 
 
+
                 // use an else statement to run seperate logic on links that
                 // are not current user display
 
@@ -140,11 +146,13 @@ const navBuilder = Object.create(null, {
                     // check to see if the boolean passed in matches the boolean
                     // on the link object. If it does not match, hide the link
 
+
                     if (booVal !== link.adminView) {
                         currentLink.classList.add("hidden")
                     } 
                 
                 }
+
 
                 // append the newly created link to the navList ul
                 $("#navListId").append(currentLink)
@@ -160,9 +168,11 @@ const navBuilder = Object.create(null, {
             // attach event listener to Find Movies link via jquery .on method
             // this function will print the find new movies search bar to the DOM
 
+
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
             })
+
 
             // attach an event listener to the sign in/sign up button.
             // this function will build the sign in/sign up form and
@@ -244,12 +254,14 @@ const navBuilder = Object.create(null, {
                 
                 // append the newly created elements to the welcome div
 
+
                 welcomeDiv.appendChild(emailLabel)
                 welcomeDiv.appendChild(userEmailInput)
                 welcomeDiv.appendChild(passwordLabel)
                 welcomeDiv.appendChild(passwordInput)
                 welcomeDiv.appendChild(signInButton)
                 welcomeDiv.appendChild(signUpButton)
+
 
                 // add the welcome div to the DOM via jquery .html method
 
@@ -277,10 +289,12 @@ const navBuilder = Object.create(null, {
                         // use jquery .val method to pas the values of the input into
                         // the parameters of the sign in function
 
+
                         $("#userEmailInput").val(),
                         $("#passwordInput").val()
                     )
                 })
+
 
                 // add an event listener to the sign Up button
 
@@ -296,6 +310,7 @@ const navBuilder = Object.create(null, {
 
                         // use jquery .val method to pas the values of the input into
                         // the parameters of the sign Up function
+
 
                         $("#userEmailInput").val(),
                         $("#passwordInput").val()
