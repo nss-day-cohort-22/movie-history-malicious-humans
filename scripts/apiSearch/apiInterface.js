@@ -2,10 +2,12 @@ const $ = require("jquery")
 const searchApi = require("./searchApi")
 
 const apiInterface = Object.create(null,{
+    //cache to hold the data returned from the external API
     "cache":{
         value: null,
         writable: true
     },
+    //method to display the search input field
     "displayInput": {
         value: function() {
             const searchInputEl = $("#findNewMovies")
@@ -14,6 +16,7 @@ const apiInterface = Object.create(null,{
             $("#searchApi").on("click", searchApi)
         }
     },
+    //method to query the API and store the returned array into the cache
     "search":{
         value: function(userSearch) {
             let condensedSearch = userSearch.replace(" ", "+")
