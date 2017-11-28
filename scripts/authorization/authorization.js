@@ -1,6 +1,16 @@
+// Author: Garrett Ward
+// Functionality: Create an object that will handle firebase initiliaztion,
+// sign in, sign up, and log out. This object will also hold the current
+// user object
+
+// require the firebase node module so we may initialize the authentication
+
 const firebase = require("firebase")
 const observe = require("./observer")
 const $ = require("jquery")
+
+// include the configuration object provided by firebase and store it in a variable
+// so it may be passed into the firebase app initialization
 
 var config = {
     apiKey: "AIzaSyBMOCunHjlJOjKcSEWYhwXJhTWoQVLTOng",
@@ -11,7 +21,11 @@ var config = {
     messagingSenderId: "348947725356"
 }
 
+// create a object that will hold functions and data pertaining to authentication
+
 const auth = Object.create(null, {
+
+// create a key so that we may store the active user's user object
 
     "activeUser": {
 
@@ -19,20 +33,31 @@ const auth = Object.create(null, {
         writable: true
 
     },
+
+    // create a key to hold the initialization function
+
     "init": {
+
         value: function () {
 
+            //invoke the firebase initialization function and pass the 
+            // configuration object in ass the arguement
+
             firebase.initializeApp(config)
+
+            //attach event listeners to the sign in and sign up buttons
+            //that will pass the the values of the userEmail and userPassword
+            //inputs into the sign in and sign up functions
 
             $("#signInButton").on("click", function () {
 
                 auth.signIn(
 
-                    $("#userNameInput").val(),
+                    $("#userEmailInput").val(),
                     $("#passwordInput").val()
                 )
 
-                $("#userNameInput").val(""),
+                $("#userEmailInput").val(""),
                 $("#passwordInput").val("")
 
             })
@@ -41,25 +66,39 @@ const auth = Object.create(null, {
             $("#signUpButton").on("click", function () {
 
                 auth.signUp(
-                    $("#userNameInput").val(),
+
+                    $("#userEmailInput").val(),
                     $("#passwordInput").val()
                 )
 
-                $("#userNameInput").val(""),
+                $("#userEmailInput").val(""),
                 $("#passwordInput").val("")
             })
 
 
-            // Set up authentication observer
+            // invoke the observer initialization function from the observer object
+            //  and pass the auth object in as the argument
+
             observe.init(this)
         }
     },
+
+    // create a key to hold the sign in function
+
     "signUp": {
+
+        //define the function to accept two parameters(email and password)
+        //to pass on to the firebae function
+
         value: function (email, password) {
+
+            // invoke the firebase authorization create user function
+
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password)
                 .catch(function(error) {
+
                 // Handle Errors here.
                     var errorCode = error.code
                     var errorMessage = error.message
@@ -67,11 +106,22 @@ const auth = Object.create(null, {
                     alert(errorMessage)
                     alert(errorCode)
                 // ...
+
                 })
         }
     },
+
+    // create a key to hold the sign in function
+
     "signIn": {
+
+        //define the function to accept two parameters(email and password)
+        //to pass on to the firebae function
+
         value: function (email, password) {
+
+            // invoke the firebase authorization sign in user function
+
             firebase
                 .auth()
                 .signInWithEmailAndPassword(email, password)
@@ -84,8 +134,18 @@ const auth = Object.create(null, {
                 })
         }
     },
+
+    // create a key to hold the log out function
+
     "logOut": {
+
+        //define the function to accept two parameters(email and password)
+        //to pass on to the firebae function
+
         value: function () {
+
+            // invoke the firebase authorization log out user function
+
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
             }).catch(function(error) {
