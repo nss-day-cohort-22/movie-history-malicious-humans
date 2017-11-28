@@ -42,6 +42,7 @@ const navBuilder = Object.create(null, {
     "init": {
         value: function (booVal) {
             const apiInterface = require("../apiSearch/apiInterface")
+            const userMovies = require("../movieSearch/displayYourMovies")
             let auth = require("../authorization/authorization")
             let navList = document.createElement("ul")
 
@@ -77,6 +78,9 @@ const navBuilder = Object.create(null, {
 
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
+            })
+            $("#searchUserMoviesLink").on("click", function () {
+                userMovies.init()
             })
 
             $("#signInLink").on("click", function () {

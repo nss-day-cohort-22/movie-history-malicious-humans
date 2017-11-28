@@ -25,6 +25,7 @@ module.exports = {
             "error",
             "never"
         ],
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "no-debugger": 0
     }
 };

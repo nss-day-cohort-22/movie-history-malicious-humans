@@ -6,16 +6,16 @@ const $ = require("jquery")
 const mainDB = Object.create(null, {
     "trackedMovies": {
         value: function () {
-            return $.ajax({
-                "url": "https://movie-nutshell.firebaseio.com/trackedMovies.json",
+            $.ajax({
+                "url": "./scripts/movieSearch/testMovieDB.json",
                 "method": "GET"
             })
         }
     },
     "userMovie": {
         value: function () {
-            return $.ajax({
-                "url": "https://movie-nutshell.firebaseio.com/userMovie.json",
+            $.ajax({
+                "url": "./scripts/movieSearch/testUserDB.json",
                 "method": "GET"
             })
         }
@@ -23,3 +23,6 @@ const mainDB = Object.create(null, {
 })
 
 module.exports = mainDB
+
+// https://movie-nutshell.firebaseio.com/trackedMovies.json
+// https://movie-nutshell.firebaseio.com/userMovie.json

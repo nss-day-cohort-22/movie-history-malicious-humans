@@ -1,0 +1,18 @@
+{
+    "trackedMovies": [
+        {
+            "movieId": "123",
+            "name": "Test Movie",
+            "poster":"http://cdn.newsapi.com.au/image/v1/1ab37db9bf3474db4c813ddf4e0308ec",
+            "tagline": "Testing Site",
+            "released": "2003"
+        },
+        {
+            "movieId": "124",
+            "name": "Test Movie 2",
+            "poster":"http://cdn.newsapi.com.au/image/v1/1ab37db9bf3474db4c813ddf4e0308ec",
+            "tagline": "Testing Site 2",
+            "released": "2004"
+        }
+    ]
+}
