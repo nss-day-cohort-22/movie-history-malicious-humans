@@ -1,3 +1,7 @@
 .hidden {
     display: none;
 }
+
+#navListId li {
+    list-style-type: none;
+}
