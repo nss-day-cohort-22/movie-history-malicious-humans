@@ -36,26 +36,9 @@ const displayYourMovies = Object.create(null, {
                             
                                 if(currentMovie.id === yourMovieId) { //when the movie id in the trackedMovies database equals the id on the userMovie database
             
-                                    //use the imported movieCard function to create a movie card and append it to the content section of the DOM
-                                    movieCard(currentMovie)
-                    
-                                    //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
-                                    const movieEl = $(`#movie_${currentMovie.id}`)
-                                    if(yourMovie.watched === true) {
-                                        //adds movie rating and adds the class of "watched" to the movie card 
-                                        movieEl.addClass("watched").append(`
-                                            <div>
-                                                <p id="movieRating">Rating: ${yourMovie.rating}</p> //change to display stars
-                                            </div>
-                                            `)
-                                    } else {
-                                        //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
-                                        movieEl.addClass("unwatched").append(`
-                                            <div>
-                                                <a href="#" id="movieWatched_${currentMovie.id}">Watched</a>
-                                            </div>
-                                            `)
-                                    }
+                                    //use the imported movieCard function to create a movie card and append it to the content section of the DOM 
+                                    movieCard(currentMovie, yourMovie)
+                                    
                                 } //end of if currentMovie.id === yourMovie.id
                             
                             } //end of for/in movieDB
