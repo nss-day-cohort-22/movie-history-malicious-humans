@@ -75,16 +75,16 @@ const navBuilder = Object.create(null, {
 
             // create the ul element that the nav items will be appended to
 
-            $("#header").html("")
+            $("#navBarId").html("")
             
             let navListLeft = document.createElement("div")
             navListLeft.id = "navListLeft"
-            $("#header").append(navListLeft)
+            $("#navBarId").append(navListLeft)
 
             // execute a for each method on the array of link objects
             let navListRight = document.createElement("div")
             navListRight.id = "navListRight"
-            $("#header").append(navListRight)
+            $("#navBarId").append(navListRight)
 
 
             navBuilder.links.forEach( link => {
@@ -172,8 +172,11 @@ const navBuilder = Object.create(null, {
 
             // inject welcome text to the dom via jquery .html method
 
-            $("#welcomePage").html("<h1>Welcome, what would you like to do?</h1>")
-
+            if (booVal === true) {
+                $("#welcomePage").html("<div id='genericWelcomeWrapper'><div id='welcomeTextId'><h1>Welcome! Click one of the buttons above to get started tracking movies.</h1></div></div>")
+            } else {
+                $("#welcomePage").html("<div id='genericWelcomeWrapper'><div id='welcomeTextId'><h1>Welcome to Malicious Movie Tracker! Please Sign In or Sign Up.</h1></div></div>")
+            }
             // attach event listener to Find Movies link via jquery .on method
             // this function will print the find new movies search bar to the DOM
 
@@ -202,6 +205,9 @@ const navBuilder = Object.create(null, {
             $("#signInLink").on("click", function () {
 
                 // create a div that will contain sign in/sign up form
+                let welcomeSpacerDiv = document.createElement("div")
+                welcomeSpacerDiv.id = "welcomeSpacerDivId"
+                $("#welcomePage").html(welcomeSpacerDiv)
 
                 let welcomeDiv = document.createElement("div")
 
@@ -212,6 +218,8 @@ const navBuilder = Object.create(null, {
                 // create an h2 that will label the email input
 
                 let emailLabel = document.createElement("h2")
+
+                emailLabel.id = "emailLabelId"
 
                 // enter the text for the h2
 
@@ -232,6 +240,8 @@ const navBuilder = Object.create(null, {
                 // create an h2 that will be a label for the password input
 
                 let passwordLabel = document.createElement("h2")
+
+                passwordLabel.id = "passwordLabelId"
 
                 // enter the text for the password h2
 
@@ -257,6 +267,8 @@ const navBuilder = Object.create(null, {
 
                 signInButton.id = "signInButton"
 
+                signInButton.classList.add("btn", "btn-danger")
+
                 // add text to the sign in button
 
                 signInButton.appendChild(document.createTextNode("Sign In"))
@@ -268,6 +280,8 @@ const navBuilder = Object.create(null, {
                 // give it an id
 
                 signUpButton.id = "signUpButton"
+
+                signUpButton.classList.add("btn", "btn-danger")
 
                 //  add text to the sign up button
 
@@ -286,7 +300,7 @@ const navBuilder = Object.create(null, {
 
                 // add the welcome div to the DOM via jquery .html method
 
-                $("#welcomePage").html(welcomeDiv)
+                $("#welcomeSpacerDivId").append(welcomeDiv)
 
 
                 // add an event listener to the sign In button

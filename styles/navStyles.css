@@ -1,6 +1,9 @@
 #header {
-    display: grid;
     background-color: lightgrey;
+}
+
+#navBarId {
+    display: grid;
     grid-template-columns: 2fr 8fr 3fr;
     grid-template-areas: 
     "active . auth"
@@ -36,12 +39,14 @@
 }
 
 .currentUserDisplayClass {
-    margin: .5em;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-top: .2em;
+    margin-bottom: .6em;
     grid-area: display;
     font-size: 1em;
     padding: .2em;
-    border: solid 2px rgba(59, 59, 59, 0.4);
-    border-radius: 7%;
+    border-bottom: solid 1.8px rgba(58, 58, 58, 0.726);
 }
 
 .signInLinkClass {
