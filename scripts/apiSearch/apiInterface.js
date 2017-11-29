@@ -1,5 +1,5 @@
 const $ = require("jquery")
-// const searchApi = require("./searchApi")
+const addAddToWatchListListener = require("../addMovie/addAddToWatchListListener")
 
 const apiInterface = Object.create(null,{
     //cache to hold the data returned from the external API
@@ -61,6 +61,7 @@ const apiInterface = Object.create(null,{
             })
             //print the movie cards to the DOM
             movieOutputEl.html(movieHTML)
+            addAddToWatchListListener(this.cache)
         }
     }
 

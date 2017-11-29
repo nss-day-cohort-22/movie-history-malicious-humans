@@ -1,57 +1,64 @@
-// const $ = require("jquery")
-// const firebase = require("firebase")
-const trackedMoviesFactory = require("./trackedMoviesFactory")
+// // const $ = require("jquery")
+// // const firebase = require("firebase")
+// const trackedMoviesFactory = require("./trackedMoviesFactory")
 
-// returns boolean value
-// const firebaseURL = "https://movie-nutshell.firebaseio.com/trackedMovies"
+// // returns boolean value
+// // const firebaseURL = "https://movie-nutshell.firebaseio.com/trackedMovies"
 
-const movieInDb = (movieId) => {
+// const movieInDb = (movieId) => {
     
-    let inDb = false
+//     // let inDb = false
 
-    trackedMoviesFactory.all().then(movies => {
-        movies.forEach(movie => {
-            if(movie.id === movieId) {
-                inDb = true
-            }
-        })
-        return inDb
-    })
+//     trackedMoviesFactory.all().then(movies => {
+//         // console.log(movies)
+//         return movies.find((movie) => {
+//             const inDb = movie.id == movieId
+//             return inDb
+//             // return movie.id == movieId
+//         })
+
+//         // movies.forEach(movie => {
+//         //     if(movie.id === movieId) {
+//         //         inDb = true
+//         //     }
+//         // })
+//         // return inDb
+//     })
     
-    // let moviesArray
+//     // let moviesArray
 
-    // return $.ajax({
-    //     "url": `${firebaseURL}/.json`,
-    //     "method": "GET"
-    // }).then(movies => {
-    //     this.moviesArray = Object.keys(movies)
-    //         .map(key => {
-    //             movies[key].id = key
-    //             return movies[key]
-    //         })
+//     // return $.ajax({
+//     //     "url": `${firebaseURL}/.json`,
+//     //     "method": "GET"
+//     // }).then(movies => {
+//     //     this.moviesArray = Object.keys(movies)
+//     //         .map(key => {
+//     //             movies[key].id = key
+//     //             return movies[key]
+//     //         })
 
-    //     return this.moviesArray
-    // })
+//     //     return this.moviesArray
+//     // })
 
-    // moviesArray.forEach(movie => {
-    //     if(movie.id === movieId) {
-    //         inDb = true
-    //     }
-    // })        
-    // return inDb
+//     // moviesArray.forEach(movie => {
+//     //     if(movie.id === movieId) {
+//     //         inDb = true
+//     //     }
+//     // })        
+//     // return inDb
 
-    // $.ajax({
-    //     "url": `${firebaseURL}/.json`,
-    //     "method": "GET"
-    // }).then(movies => {
-    //     movies.forEach(movie => {
-    //         if(movie.id === movieId) {
-    //             inDb = true
-    //         }
-    //     })        
-    //     return inDb
-    // })
+//     // $.ajax({
+//     //     "url": `${firebaseURL}/.json`,
+//     //     "method": "GET"
+//     // }).then(movies => {
+//     //     movies.forEach(movie => {
+//     //         if(movie.id === movieId) {
+//     //             inDb = true
+//     //         }
+//     //     })        
+//     //     return inDb
+//     // })
     
-}
+// }
 
-module.exports = movieInDb
+// module.exports = movieInDb

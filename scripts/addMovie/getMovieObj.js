@@ -1,6 +1,6 @@
 const apiInterface = require("../apiSearch/apiInterface.js")
 
-const getMovieObj = (movieId) => {
+const getMovieObj = (movieId, movieArray) => {
     
     let movieObj = null
 

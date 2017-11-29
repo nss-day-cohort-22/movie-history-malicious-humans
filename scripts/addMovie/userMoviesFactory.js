@@ -1,9 +1,9 @@
 const $ = require("jquery")
 const firebase = require("firebase")
 
-const firebaseURL = "https://movie-nutshell.firebaseio.com/trackedMovies"
+const firebaseURL = "https://movie-nutshell.firebaseio.com/userMovie"
 
-const trackedMoviesFactory = Object.create(null, {
+const userMoviesFactory = Object.create(null, {
     "cache": {
         value: null,
         writable: true
@@ -14,11 +14,7 @@ const trackedMoviesFactory = Object.create(null, {
                 "url": `${firebaseURL}/.json`,
                 "method": "GET"
             }).then(movies => {
-                // this.cache = Object.keys(movies)
-                //     .map(key => {
-                //         movies[key].id = key
-                //         return movies[key]
-                //     })
+                
                 const array = $.map(movies, function(value, index) {
                     return [value]
                 })
@@ -29,13 +25,13 @@ const trackedMoviesFactory = Object.create(null, {
         }
     },
     "add": {
-        value: function (movie) {
+        value: function (userMovieObj) {
             return firebase.auth().currentUser.getToken(true)
                 .then(idToken => {
                     return $.ajax({
                         "url": `${firebaseURL}/.json?auth=${idToken}`,
                         "method": "POST",
-                        "data": JSON.stringify(movie)
+                        "data": JSON.stringify(userMovieObj)
                     })
                 })
         }
@@ -55,4 +51,4 @@ const trackedMoviesFactory = Object.create(null, {
 })
 
 
-module.exports = trackedMoviesFactory
+module.exports = userMoviesFactory
