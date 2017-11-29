@@ -1,6 +1,6 @@
 const $ = require("jquery")
 const trackedMoviesFactory = require("../addMovie/trackedMoviesFactory")
-const rating = require("./starRating")
+
 const user = require("../authorization/authorization")
 const firebase = require("firebase")
 const modalOutputEl = $("#modal")
@@ -36,6 +36,7 @@ function watchedModal(e){
 }
 
 function watched(event){
+    const rating = require("./starRating")
     rating(event)
     const userId= user.activeUser.uid
     const movieId = movieWatched.id 
