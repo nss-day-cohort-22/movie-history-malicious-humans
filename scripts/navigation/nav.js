@@ -169,6 +169,14 @@ const navBuilder = Object.create(null, {
             // attach event listener to Find Movies link via jquery .on method
             // this function will print the find new movies search bar to the DOM
 
+            $("#logOutLink").on("click", function () {
+                let auth = require("../authorization/authorization")
+
+                auth.logOut()
+
+            })
+
+            
 
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
@@ -271,12 +279,6 @@ const navBuilder = Object.create(null, {
 
                 $("#welcomePage").html(welcomeDiv)
 
-                $("#logOutLink").on("click", function () {
-                    let auth = require("../authorization/authorization")
-
-                    auth.logOut()
-
-                })
 
                 // add an event listener to the sign In button
 
