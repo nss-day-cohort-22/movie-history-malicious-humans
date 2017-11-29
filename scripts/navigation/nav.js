@@ -26,13 +26,15 @@ const navBuilder = Object.create(null, {
                 "linkId": "findMoviesLink",
                 // admin view for true if user login is required to view
 
-                "adminView": true
+                "adminView": true,
+                "gridSpacing": "left"
             },
             {
                 "display": "Search Your Movies",
                 "linkClass": "searchUserMoviesLinkClass",
                 "linkId": "searchUserMoviesLink",
-                "adminView": true
+                "adminView": true,
+                "gridSpacing": "left"
             },
             {
                 "display": "Current User",
@@ -72,14 +74,16 @@ const navBuilder = Object.create(null, {
 
             // create the ul element that the nav items will be appended to
 
-            let navList = document.createElement("ul")
-            navList.id = "navListId"
-            $("#header").html(navList)
+            $("#header").html("")
+            
+            let navListLeft = document.createElement("div")
+            navListLeft.id = "navListLeft"
+            $("#header").append(navListLeft)
 
             // execute a for each method on the array of link objects
-            let currentLinkList = document.createElement("li")
-            currentLinkList.id = "currentLinkList"
-            $("#navListId").html(currentLinkList)
+            let navListRight = document.createElement("div")
+            navListRight.id = "navListRight"
+            $("#header").append(navListRight)
 
 
             navBuilder.links.forEach( link => {
@@ -130,6 +134,7 @@ const navBuilder = Object.create(null, {
 
                 } else {
 
+
                     // create a button for the current link object
 
                     newLink = document.createElement("button")
@@ -154,7 +159,12 @@ const navBuilder = Object.create(null, {
                         newLink.classList.add("hidden")
                     } 
                 }
-                $("#currentLinkList").append(newLink)
+
+                if (link.gridSpacing === "left") {
+                    $("#navListLeft").append(newLink)
+                } else {
+                    $("#navListRight").append(newLink)
+                }
             })
 
 
