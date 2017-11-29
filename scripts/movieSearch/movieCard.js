@@ -5,15 +5,15 @@ const $ = require("jquery")
 
 const movieCard = (movie) => {
     const movieId = movie.id
-
+    
     $.ajax({
         "url": `http://api.themoviedb.org/3/movie/${movieId}/casts?api_key=858deec9a8305f575390bb92f4c3eab8`,
         "method": "GET"
     }).then(movieCast => {
+        let movieString = ""
         const castArray = movieCast.cast
         const posterPath = movie.poster_path
         const movieYear = movie.release_date.slice(0,4)
-        let movieString = ""
         
         movieString += `
             <section class="movieCard" id="movie_${movie.id}">
@@ -35,15 +35,13 @@ const movieCard = (movie) => {
         })
 
         movieString += `
-        </ul>        
-        </p>
-        </div>
+                    </ul>        
+                </p>
+            </div>
         </section> 
         `
-        
         $("#content").append(movieString)
-    })  
-
+    }) 
 
 
 }

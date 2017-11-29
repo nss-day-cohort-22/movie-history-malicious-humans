@@ -40,29 +40,29 @@ const displayYourMovies = Object.create(null, {
                                     movieCard(currentMovie)
                     
                                     //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
+                                    const movieEl = $(`#movie_${currentMovie.id}`)
                                     if(yourMovie.watched === true) {
                                         //adds movie rating and adds the class of "watched" to the movie card 
-                                        $(`#movie_${currentMovie.id}`).addClass("watched").append(`
+                                        movieEl.addClass("watched").append(`
                                             <div>
                                                 <p id="movieRating">Rating: ${yourMovie.rating}</p> //change to display stars
                                             </div>
                                             `)
                                     } else {
                                         //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
-                                        $(`#movie_${currentMovie.id}`).addClass("unwatched").append(`
+                                        movieEl.addClass("unwatched").append(`
                                             <div>
                                                 <a href="#" id="movieWatched_${currentMovie.id}">Watched</a>
                                             </div>
                                             `)
                                     }
                                 } //end of if currentMovie.id === yourMovie.id
-                                    
-                            } //end of for/in movieDB
-                                
-                        } //end of if activeUserId === yourMovie.userId
                             
+                            } //end of for/in movieDB
+                            
+                        } //end of if activeUserId === yourMovie.userId
+                        
                     } //end of for/in userMoviesDB
-
                 })//end of user ajax
             })//end of movie ajax
         }
