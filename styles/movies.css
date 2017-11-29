@@ -1,0 +1,22 @@
+.movieCard {
+    border: 3px solid #dc3545;
+    padding: 10px;
+    margin: auto;
+    margin-top: 5px;
+    width: 50%
+}
+
+.movieCast {
+    list-style: none;
+    padding-left: 20px
+}
+
+.movieCast i {
+    font-size: .9em;
+    color: #dc3545
+}
+
+.delete {
+    float: right;
+    font-size: 1.5rem
+}

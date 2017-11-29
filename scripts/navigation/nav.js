@@ -196,7 +196,7 @@ const navBuilder = Object.create(null, {
             })
             $("#searchUserMoviesLink").on("click", function () {
                 userMovies.init()
-
+                $("#welcomePage").html("")
             })
 
 
