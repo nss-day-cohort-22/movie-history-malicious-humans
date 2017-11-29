@@ -19,7 +19,6 @@ const displayYourMovies = Object.create(null, {
                     "method": "GET"
                 }).then( userMoviesDB => {
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
-                    debugger
                     userMoviesDB.userMovie.forEach( yourMovie => {
                         const activeUserId = authorized.activeUser.uid
                         if(activeUserId === yourMovie.userId) { //the authorized user id is equal to the userId on the userMovie database
@@ -29,27 +28,29 @@ const displayYourMovies = Object.create(null, {
         
                                     //use the imported movieCard function to create a movie card and append it to the searchYourMovies section of the DOM
                                     movieCard(currentMovie)
-                                            
+                
                                     //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
                                     if(yourMovie.watched === true) {
                                         //adds movie rating and adds the class of "watched" to the movie card 
-                                        $(".movieCard").addClass("watched").append(`
-                                                    <div>
-                                                        <p id="movie_rating">Rating: ${yourMovie.rating}</p> //change to display stars
-                                                    </div>
-                                                `)
+                                        $(`#movie_${currentMovie.movieId}`).addClass("watched").append(`
+                                        <div>
+                                            <p id="movie_rating">Rating: ${yourMovie.rating}</p> //change to display stars
+                                        </div>
+                                        `)
                                     } else {
                                         //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
-                                        $(".movieCard").addClass("unwatched").append(`
-                                                    <div>
-                                                        <a href="#" id="movie_watched">Watched</a>
-                                                    </div>
-                                                `)
+                                        $(`#movie_${currentMovie.movieId}`).addClass("unwatched").append(`
+                                        <div>
+                                            <a href="#" id="movie_watched">Watched</a>
+                                        </div>
+                                        `)
                                     }
-                
                                 }
+                                
                             })
-                        } 
+                            
+                        }
+                        
                     })
                 })
             })
@@ -65,3 +66,5 @@ const displayYourMovies = Object.create(null, {
 
 
 module.exports = displayYourMovies
+
+
