@@ -5,7 +5,7 @@ const createUserMovieObj = (movieId) => {
         user_id: userId.activeUser.uid,
         movie_id: movieId,
         watched: false,
-        rating: null
+        rating: 0
     }
 }
 
