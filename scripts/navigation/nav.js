@@ -97,7 +97,7 @@ const navBuilder = Object.create(null, {
                     
                         // create an h2 element to display the current user
 
-                        currentLink = document.createElement("h2")
+                        currentLink = document.createElement("h4")
 
                         // add the class
 
@@ -109,7 +109,7 @@ const navBuilder = Object.create(null, {
 
                         // add the users email in as the text for the h2 element
 
-                        currentLink.appendChild(document.createTextNode(activeUserObj.email))
+                        currentLink.appendChild(document.createTextNode("logged in as: " + activeUserObj.email))
 
                         // check to see if the boolean passed in matches the boolean
                         // on the link object. If it does not match, hide the link
@@ -155,7 +155,9 @@ const navBuilder = Object.create(null, {
 
 
                 // append the newly created link to the navList ul
-                $("#navListId").append(currentLink)
+                let liWrapper = document.createElement("li")
+                liWrapper.appendChild(currentLink)
+                $("#navListId").append(liWrapper)
             })
 
 
@@ -179,6 +181,7 @@ const navBuilder = Object.create(null, {
 
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
+                $("#welcomePage").html("")
             })
 
 
