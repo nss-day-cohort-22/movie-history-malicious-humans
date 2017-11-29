@@ -1,14 +1,51 @@
 #header {
+    display: grid;
     background-color: lightgrey;
+    grid-template-columns: 2fr 8fr 3fr;
+    grid-template-areas: 
+    "active . auth"
+    ; 
 }
 
-#navListId {
-    list-style-type: none;
+#navListLeft {
+    display: grid;
+    grid-area: active;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "searchNew searchSaved"
+    ;
 }
 
-#navListId li {
-    display: inline;
+#navListRight {
+    display: grid;
+    grid-area: auth;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas: 
+    "display in out"
+    ;
 }
+
+.findMoviesLinkClass {
+    grid-area: searchNew;
+}
+
+.searchUserMoviesLinkClass {
+    grid-area: searchSaved;
+}
+
+.currentUserDisplayClass {
+    grid-area: display;
+}
+
+.signInLinkClass {
+    grid-area: in;
+}
+
+.signOutLinkClass {
+    grid-area: out;
+}
+
+
 
 
 
