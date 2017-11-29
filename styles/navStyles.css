@@ -26,22 +26,27 @@
 }
 
 .findMoviesLinkClass {
+    margin: .5em;
     grid-area: searchNew;
 }
 
 .searchUserMoviesLinkClass {
+    margin: .5em;
     grid-area: searchSaved;
 }
 
 .currentUserDisplayClass {
+    margin: .5em;
     grid-area: display;
+    font-size: .9em;
 }
 
 .signInLinkClass {
     grid-area: in;
 }
 
-.signOutLinkClass {
+.logOutLinkClass {
+    margin: .5em;
     grid-area: out;
 }
 
