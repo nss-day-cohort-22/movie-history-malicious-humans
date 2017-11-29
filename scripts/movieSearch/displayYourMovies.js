@@ -18,6 +18,13 @@ const displayYourMovies = Object.create(null, {
                     "url": "./scripts/movieSearch/testUserDB.json",
                     "method": "GET"
                 }).then( userMoviesDB => {
+                    const searchButtons = `
+                        <button id="unwatchedMovies">Show Unwatched</button>
+                        <button id="watchedMovies">Show Watched</button>
+                    `
+                    $("#searchYourMovies").append(searchButtons)
+                    $("#watchedMovies").on("click", this.watched) //add function to button
+                    $("#unwatchedMovies").on("click", this.unwatched) //add function to button
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
                     userMoviesDB.userMovie.forEach( yourMovie => {
                         const activeUserId = authorized.activeUser.uid
@@ -56,11 +63,29 @@ const displayYourMovies = Object.create(null, {
             })
         }
     },
-    "watched": { //if watched value is true then display movie
-        value: ""
+    "watched": { 
+        value: function () {
+            const watchedMovie = $(".watched")
+            const unwatchedMovie = $(".unwatched")
+
+            unwatchedMovie.addClass("hidden") //hide unwatched movies
+            
+            if(watchedMovie.hasClass("hidden") === true){ //if the watched movies have a class of hidden, remove that class
+                watchedMovie.removeClass("hidden")
+            }
+        }
     },
     "unwatched": { //if watched value is false then display movie
-        value: ""
+        value: function () {
+            const watchedMovie = $(".watched")
+            const unwatchedMovie = $(".unwatched")
+
+            watchedMovie.addClass("hidden") //hide watched movies
+            
+            if(unwatchedMovie.hasClass("hidden") === true){ //if the unwatched movies have a class of hidden, remove that class
+                unwatchedMovie.removeClass("hidden")
+            }
+        }
     }
 })
 

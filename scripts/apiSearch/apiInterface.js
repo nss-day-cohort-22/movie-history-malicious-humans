@@ -1,5 +1,4 @@
 const $ = require("jquery")
-const searchApi = require("./searchApi")
 
 const apiInterface = Object.create(null,{
     //cache to hold the data returned from the external API
