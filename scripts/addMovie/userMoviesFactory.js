@@ -8,14 +8,15 @@ const userMoviesFactory = Object.create(null, {
         value: null,
         writable: true
     },
+    // haven't tested "all"
     "all": {
         value: function () {
             return $.ajax({
                 "url": `${firebaseURL}/.json`,
                 "method": "GET"
-            }).then(movies => {
+            }).then(userMovies => {
                 
-                const array = $.map(movies, function(value, index) {
+                const array = $.map(userMovies, function(value, index) {
                     return [value]
                 })
                 this.cache = array
@@ -36,18 +37,18 @@ const userMoviesFactory = Object.create(null, {
                 })
         }
     },
-    "replace": {
-        value: function (movie, id) {
-            return firebase.auth().currentUser.getToken(true)
-                .then(idToken => {
-                    return $.ajax({
-                        "url": `${firebaseURL}/${id}/.json`,
-                        "method": "PUT",
-                        "data": JSON.stringify(movie)
-                    })
-                })
-        }
-    }
+    // "replace": {
+    //     value: function (movie, id) {
+    //         return firebase.auth().currentUser.getToken(true)
+    //             .then(idToken => {
+    //                 return $.ajax({
+    //                     "url": `${firebaseURL}/${id}/.json`,
+    //                     "method": "PUT",
+    //                     "data": JSON.stringify(movie)
+    //                 })
+    //             })
+    //     }
+    // }
 })
 
 
