@@ -5,6 +5,13 @@ const $ = require("jquery")
 
 const movieCard = (movie) => {
 
+    $.ajax({
+        "url": `http://api.themoviedb.org/3/movie/${movie.id}/casts?api_key=858deec9a8305f575390bb92f4c3eab8`,
+        "method": "GET"
+    }).then(cast => {
+        debugger
+        return cast
+    })  
 
     const posterPath = movie.poster_path
     const movieYear = movie.release_date.slice(0,4)
