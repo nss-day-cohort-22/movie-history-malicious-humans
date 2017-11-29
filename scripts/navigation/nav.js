@@ -70,6 +70,7 @@ const navBuilder = Object.create(null, {
             // this function
 
             const apiInterface = require("../apiSearch/apiInterface")
+            const userMovies = require("../movieSearch/displayYourMovies")
             let auth = require("../authorization/authorization")
 
             // create the ul element that the nav items will be appended to
@@ -188,6 +189,9 @@ const navBuilder = Object.create(null, {
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
                 $("#welcomePage").html("")
+            })
+            $("#searchUserMoviesLink").on("click", function () {
+                userMovies.init()
             })
 
 
