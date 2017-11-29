@@ -18,28 +18,27 @@ const movieCard = (movie, user) => {
         //builds string to display the movie
         movieString += `
             <section class="movieCard" id="movie_${movie.id}">
-                <span id="delete_${movie.id}">&#10006;</span>
+                <span id="delete_${movie.id}" class="delete">&#10006;</span>
                 <div class="yourMovies">
-                    <h1 class="movieName">${movie.title}</h1>
-                    <img src="https://image.tmdb.org/t/p/w150${posterPath}" alt="${movie.title} poster" class="moviePoster">
-                    <p class="movieRelease">Year released: ${movieYear}</p>
-                    <p>Top Billed Actors: 
-                        <ul class="movieCast">
+                <img src="https://image.tmdb.org/t/p/w150${posterPath}" alt="${movie.title} poster" class="moviePoster">
+                <h2 class="movieTitle">${movie.title}</h2>
+                    <h3 class="movieYear">${movieYear}</h3>
+                    <ul class="movieCast">
+                        <LH class="movieCastHeader"><b>Top Billed Actors:</b></LH>
                         
         `
         //iterates through the cast array and if they are one of the top five ranked cast members then add to the string
         castArray.forEach( topCast => {
             if(topCast.order < 5) {
                 movieString += `
-                    <li class="actor">${topCast.name}</li>
+                    <li class="actor">${topCast.name} <i>as ${topCast.character}</i></li>
                 `
             }
         })
 
         //closing tags for string
         movieString += `
-                    </ul>        
-                </p>
+                </ul>        
             </div>
         </section> 
         `
@@ -52,14 +51,14 @@ const movieCard = (movie, user) => {
             //adds movie rating and adds the class of "watched" to the movie card 
             movieEl.addClass("watched").append(`
         <div>
-            <p id="movieRating">Rating: ${user.rating}</p> //change to display stars
+            <p class="movieRating">Rating: ${user.rating}</p> //change to display stars
         </div>
         `)
         } else {
             //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
             movieEl.addClass("unwatched").append(`
         <div>
-            <a href="#" id="movieWatched_${movie.id}">Watched</a>
+            <a href="#" id="movieWatched_${movie.id}" class="watchLink">Watched</a>
         </div>
         `)
         }
