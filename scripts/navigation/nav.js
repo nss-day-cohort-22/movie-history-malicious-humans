@@ -189,9 +189,11 @@ const navBuilder = Object.create(null, {
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
                 $("#welcomePage").html("")
+
             })
             $("#searchUserMoviesLink").on("click", function () {
                 userMovies.init()
+
             })
 
 
