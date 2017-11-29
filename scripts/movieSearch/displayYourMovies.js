@@ -14,6 +14,8 @@ const displayYourMovies = Object.create(null, {
                 "method": "GET"
             }).then( movieDB => {
                 const authorized = require("../authorization/authorization")                
+                $("#content").html("") //resets area to not duplicate content
+                $("#findNewMovies").html("") //resets findNewMovies search bar if it's present
                 $.ajax({
                     "url": "./scripts/movieSearch/testUserDB.json",
                     "method": "GET"
@@ -22,7 +24,7 @@ const displayYourMovies = Object.create(null, {
                         <button id="unwatchedMovies">Show Unwatched</button>
                         <button id="watchedMovies">Show Watched</button>
                     `
-                    $("#searchYourMovies").append(searchButtons)
+                    $("#content").append(searchButtons)
                     $("#watchedMovies").on("click", this.watched) //add function to button
                     $("#unwatchedMovies").on("click", this.unwatched) //add function to button
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
@@ -33,7 +35,7 @@ const displayYourMovies = Object.create(null, {
 
                                 if(currentMovie.movieId === yourMovie.movieId) { //when the movie id in the trackedMovies database equals the movieId on the userMovie database
         
-                                    //use the imported movieCard function to create a movie card and append it to the searchYourMovies section of the DOM
+                                    //use the imported movieCard function to create a movie card and append it to the content section of the DOM
                                     movieCard(currentMovie)
                 
                                     //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it

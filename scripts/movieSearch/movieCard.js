@@ -16,7 +16,7 @@ const movieCard = (movie) => {
             </div>
         </section>
     `
-    $("#searchYourMovies").append(movieString)
+    $("#content").append(movieString)
 }
 
 module.exports =  movieCard
