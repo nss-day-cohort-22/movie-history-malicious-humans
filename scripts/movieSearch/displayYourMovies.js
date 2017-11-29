@@ -2,31 +2,28 @@
 //Functionality: gets the user's tracked movies and displays them on the DOM
 
 const $ = require("jquery")
-const movieCard = require("./movieCard")
-// const mainDB = require("./movieFactory")
+const movieCard = require("./movieCard") //builds the cards to display the movies
+const mainDB = require("./movieFactory") //gets the database
 
 
 const displayYourMovies = Object.create(null, {
     "init": {
         value: function () {
-            $.ajax({
-                "url": "./scripts/movieSearch/testMovieDB.json",
-                "method": "GET"
-            }).then( movieDB => {
+            mainDB.trackedMovies().then( movieDB => {
                 const authorized = require("../authorization/authorization")                
+                
                 $("#content").html("") //resets area to not duplicate content
                 $("#findNewMovies").html("") //resets findNewMovies search bar if it's present
-                $.ajax({
-                    "url": "./scripts/movieSearch/testUserDB.json",
-                    "method": "GET"
-                }).then( userMoviesDB => {
+                
+                mainDB.userMovie().then( userMoviesDB => {
                     const searchButtons = `
-                        <button id="unwatchedMovies">Show Unwatched</button>
+                        <button id="unwatchedMovies">Show Unwatched</button> 
                         <button id="watchedMovies">Show Watched</button>
                     `
-                    $("#content").append(searchButtons)
+                    $("#content").append(searchButtons) //adds buttons to filter through Watched or Unwatched Movies
                     $("#watchedMovies").on("click", this.watched) //add function to button
                     $("#unwatchedMovies").on("click", this.unwatched) //add function to button
+                    
                     //iterate through userMovies and if the userId equals the current authorized user then iterate through the trackMovies database to build a string of movies to add to the DOM
                     userMoviesDB.userMovie.forEach( yourMovie => {
                         const activeUserId = authorized.activeUser.uid

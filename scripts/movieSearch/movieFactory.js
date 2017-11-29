@@ -1,12 +1,12 @@
 //author: Kristen
-//functionality: gets the database from Firebase
+//functionality: does an ajax call to get the database from Firebase
 const $ = require("jquery")
 
 
 const mainDB = Object.create(null, {
     "trackedMovies": {
         value: function () {
-            $.ajax({
+            return $.ajax({
                 "url": "./scripts/movieSearch/testMovieDB.json",
                 "method": "GET"
             })
@@ -14,7 +14,7 @@ const mainDB = Object.create(null, {
     },
     "userMovie": {
         value: function () {
-            $.ajax({
+            return $.ajax({
                 "url": "./scripts/movieSearch/testUserDB.json",
                 "method": "GET"
             })
