@@ -4,7 +4,6 @@
 // user object
 
 // require the firebase node module so we may initialize the authentication
-
 const firebase = require("firebase")
 const observe = require("./observer")
 const $ = require("jquery")
@@ -31,7 +30,6 @@ const auth = Object.create(null, {
 
         value: null,
         writable: true
-
     },
 
     // create a key to hold the initialization function

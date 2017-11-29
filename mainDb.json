@@ -1,0 +1,11 @@
+{
+    "trackedMovies": [{
+        "movieId": 123
+    }],
+    "userMovie": [{
+        "userId": null,
+        "movieId": null,
+        "watched": false,
+        "rating": null
+    }]
+}
