@@ -26,13 +26,15 @@ const navBuilder = Object.create(null, {
                 "linkId": "findMoviesLink",
                 // admin view for true if user login is required to view
 
-                "adminView": true
+                "adminView": true,
+                "gridSpacing": "left"
             },
             {
                 "display": "Search Your Movies",
                 "linkClass": "searchUserMoviesLinkClass",
                 "linkId": "searchUserMoviesLink",
-                "adminView": true
+                "adminView": true,
+                "gridSpacing": "left"
             },
             {
                 "display": "Current User",
@@ -72,17 +74,23 @@ const navBuilder = Object.create(null, {
 
             // create the ul element that the nav items will be appended to
 
-            let navList = document.createElement("ul")
-            navList.id = "navListId"
-            $("#header").html(navList)
+            $("#header").html("")
+            
+            let navListLeft = document.createElement("div")
+            navListLeft.id = "navListLeft"
+            $("#header").append(navListLeft)
 
             // execute a for each method on the array of link objects
+            let navListRight = document.createElement("div")
+            navListRight.id = "navListRight"
+            $("#header").append(navListRight)
 
-            this.links.forEach( link => {
+
+            navBuilder.links.forEach( link => {
 
                 // create a an empty string to begin writing the current link
 
-                let currentLink = ""
+                let newLink = ""
 
                 // use an if statement to see if the current link object
                 // represents the current user display
@@ -97,27 +105,26 @@ const navBuilder = Object.create(null, {
                     
                         // create an h2 element to display the current user
 
-                        currentLink = document.createElement("h2")
+                        newLink = document.createElement("h4")
 
                         // add the class
 
-                        currentLink.classList.add(`${link.linkClass}`)
+                        newLink.classList.add(`${link.linkClass}`)
 
                         // add the id
 
-                        currentLink.id = `${link.linkId}`
+                        newLink.id = `${link.linkId}`
 
                         // add the users email in as the text for the h2 element
 
-                        currentLink.appendChild(document.createTextNode(activeUserObj.email))
+                        newLink.appendChild(document.createTextNode("logged in as: " + activeUserObj.email))
 
                         // check to see if the boolean passed in matches the boolean
                         // on the link object. If it does not match, hide the link
                     
                         if (booVal !== link.adminView) {
-                            currentLink.classList.add("hidden")
+                            newLink.classList.add("hidden")
                         }
-
                     }
 
 
@@ -127,37 +134,38 @@ const navBuilder = Object.create(null, {
 
                 } else {
 
+
                     // create a button for the current link object
 
-                    currentLink = document.createElement("button")
+                    newLink = document.createElement("button")
 
                     // add the class
 
-                    currentLink.classList.add(`${link.linkClass}`)
+                    newLink.classList.add(`${link.linkClass}`, "btn", "btn-danger")
 
                     // add the id
         
-                    currentLink.id = `${link.linkId}`
+                    newLink.id = `${link.linkId}`
 
                     // add the display text to the button
 
-                    currentLink.appendChild(document.createTextNode(`${link.display}`))
+                    newLink.appendChild(document.createTextNode(`${link.display}`))
 
                     // check to see if the boolean passed in matches the boolean
                     // on the link object. If it does not match, hide the link
 
 
                     if (booVal !== link.adminView) {
-                        currentLink.classList.add("hidden")
+                        newLink.classList.add("hidden")
                     } 
-                
                 }
 
-
-                // append the newly created link to the navList ul
-                $("#navListId").append(currentLink)
+                if (link.gridSpacing === "left") {
+                    $("#navListLeft").append(newLink)
+                } else {
+                    $("#navListRight").append(newLink)
+                }
             })
-
 
 
 
@@ -179,6 +187,7 @@ const navBuilder = Object.create(null, {
 
             $("#findMoviesLink").on("click", function () {
                 apiInterface.displayInput()
+                $("#welcomePage").html("")
             })
 
 
