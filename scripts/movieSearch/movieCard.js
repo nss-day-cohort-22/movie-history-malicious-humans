@@ -5,6 +5,7 @@ const $ = require("jquery")
 
 const movieCard = (movie) => {
 
+
     const posterPath = movie.poster_path
     const movieYear = movie.release_date.slice(0,4)
     let movieString = ""
@@ -20,8 +21,6 @@ const movieCard = (movie) => {
             </section> 
         `
     $("#content").append(movieString)
-
-
 
 }
 
