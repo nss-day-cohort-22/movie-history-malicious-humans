@@ -4,6 +4,7 @@
 const $ = require("jquery")
 const movieCard = require("./movieCard") //builds the cards to display the movies
 const mainDB = require("./movieFactory") //gets the database
+const movieWatched = require("./movieWatched")
 
 const displayYourMovies = Object.create(null, {
     "init": {
@@ -36,33 +37,16 @@ const displayYourMovies = Object.create(null, {
                             
                                 if(currentMovie.id === yourMovieId) { //when the movie id in the trackedMovies database equals the id on the userMovie database
             
-                                    //use the imported movieCard function to create a movie card and append it to the content section of the DOM
-                                    movieCard(currentMovie)
-                    
-                                    //if the movie has been watched add the rating. If not, add a link to allow users to mark when they've watched it
-                                    if(yourMovie.watched === true) {
-                                        //adds movie rating and adds the class of "watched" to the movie card 
-                                        $(`#movie_${currentMovie.id}`).addClass("watched").append(`
-                                            <div>
-                                                <p id="movieRating">Rating: ${yourMovie.rating}</p> //change to display stars
-                                            </div>
-                                            `)
-                                    } else {
-                                        //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
-                                        $(`#movie_${currentMovie.id}`).addClass("unwatched").append(`
-                                            <div>
-                                                <a href="#" id="movieWatched">Watched</a>
-                                            </div>
-                                            `)
-                                    }
-                                } //end of if currentMovie.id === yourMovie.id
+                                    //use the imported movieCard function to create a movie card and append it to the content section of the DOM 
+                                    movieCard(currentMovie, yourMovie)
                                     
-                            } //end of for/in movieDB
-                                
-                        } //end of if activeUserId === yourMovie.userId
+                                } //end of if currentMovie.id === yourMovie.id
                             
+                            } //end of for/in movieDB
+                            
+                        } //end of if activeUserId === yourMovie.userId
+                        
                     } //end of for/in userMoviesDB
-
                 })//end of user ajax
             })//end of movie ajax
         }
