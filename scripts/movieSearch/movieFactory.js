@@ -7,7 +7,7 @@ const mainDB = Object.create(null, {
     "trackedMovies": {
         value: function () {
             return $.ajax({
-                "url": "./scripts/movieSearch/testMovieDB.json",
+                "url": "https://movie-nutshell.firebaseio.com/trackedMovies.json",
                 "method": "GET"
             })
         }
@@ -15,7 +15,7 @@ const mainDB = Object.create(null, {
     "userMovie": {
         value: function () {
             return $.ajax({
-                "url": "./scripts/movieSearch/testUserDB.json",
+                "url": "https://movie-nutshell.firebaseio.com/userMovie.json",
                 "method": "GET"
             })
         }
@@ -23,6 +23,3 @@ const mainDB = Object.create(null, {
 })
 
 module.exports = mainDB
-
-// https://movie-nutshell.firebaseio.com/trackedMovies.json
-// https://movie-nutshell.firebaseio.com/userMovie.json
