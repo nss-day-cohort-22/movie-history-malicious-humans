@@ -4,6 +4,7 @@
 const $ = require("jquery")
 const movieCard = require("./movieCard") //builds the cards to display the movies
 const mainDB = require("./movieFactory") //gets the database
+const movieWatched = require("./movieWatched")
 
 const displayYourMovies = Object.create(null, {
     "init": {
@@ -51,7 +52,7 @@ const displayYourMovies = Object.create(null, {
                                         //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
                                         $(`#movie_${currentMovie.id}`).addClass("unwatched").append(`
                                             <div>
-                                                <a href="#" id="movieWatched">Watched</a>
+                                                <a href="#" id="movieWatched_${currentMovie.id}">Watched</a>
                                             </div>
                                             `)
                                     }
