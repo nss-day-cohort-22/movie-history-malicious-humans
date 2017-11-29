@@ -1,0 +1,14 @@
+#header {
+    background-color: lightgrey;
+}
+
+#navListId {
+    list-style-type: none;
+}
+
+#navListId li {
+    display: inline;
+}
+
+
+

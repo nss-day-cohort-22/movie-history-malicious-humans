@@ -77,12 +77,16 @@ const navBuilder = Object.create(null, {
             $("#header").html(navList)
 
             // execute a for each method on the array of link objects
+            let currentLinkList = document.createElement("li")
+            currentLinkList.id = "currentLinkList"
+            $("#navListId").html(currentLinkList)
 
-            this.links.forEach( link => {
+
+            navBuilder.links.forEach( link => {
 
                 // create a an empty string to begin writing the current link
 
-                let currentLink = ""
+                let newLink = ""
 
                 // use an if statement to see if the current link object
                 // represents the current user display
@@ -97,27 +101,26 @@ const navBuilder = Object.create(null, {
                     
                         // create an h2 element to display the current user
 
-                        currentLink = document.createElement("h4")
+                        newLink = document.createElement("h4")
 
                         // add the class
 
-                        currentLink.classList.add(`${link.linkClass}`)
+                        newLink.classList.add(`${link.linkClass}`)
 
                         // add the id
 
-                        currentLink.id = `${link.linkId}`
+                        newLink.id = `${link.linkId}`
 
                         // add the users email in as the text for the h2 element
 
-                        currentLink.appendChild(document.createTextNode("logged in as: " + activeUserObj.email))
+                        newLink.appendChild(document.createTextNode("logged in as: " + activeUserObj.email))
 
                         // check to see if the boolean passed in matches the boolean
                         // on the link object. If it does not match, hide the link
                     
                         if (booVal !== link.adminView) {
-                            currentLink.classList.add("hidden")
+                            newLink.classList.add("hidden")
                         }
-
                     }
 
 
@@ -129,37 +132,30 @@ const navBuilder = Object.create(null, {
 
                     // create a button for the current link object
 
-                    currentLink = document.createElement("button")
+                    newLink = document.createElement("button")
 
                     // add the class
 
-                    currentLink.classList.add(`${link.linkClass}`)
+                    newLink.classList.add(`${link.linkClass}`, "btn", "btn-danger")
 
                     // add the id
         
-                    currentLink.id = `${link.linkId}`
+                    newLink.id = `${link.linkId}`
 
                     // add the display text to the button
 
-                    currentLink.appendChild(document.createTextNode(`${link.display}`))
+                    newLink.appendChild(document.createTextNode(`${link.display}`))
 
                     // check to see if the boolean passed in matches the boolean
                     // on the link object. If it does not match, hide the link
 
 
                     if (booVal !== link.adminView) {
-                        currentLink.classList.add("hidden")
+                        newLink.classList.add("hidden")
                     } 
-                
                 }
-
-
-                // append the newly created link to the navList ul
-                let liWrapper = document.createElement("li")
-                liWrapper.appendChild(currentLink)
-                $("#navListId").append(liWrapper)
+                $("#currentLinkList").append(newLink)
             })
-
 
 
 
