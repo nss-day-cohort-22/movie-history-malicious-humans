@@ -9,8 +9,8 @@ const movieCard = (movie) => {
         "url": `http://api.themoviedb.org/3/movie/${movie.id}/casts?api_key=858deec9a8305f575390bb92f4c3eab8`,
         "method": "GET"
     }).then(cast => {
-        debugger
-        return cast
+        
+        console.log(cast.cast)
     })  
 
     const posterPath = movie.poster_path

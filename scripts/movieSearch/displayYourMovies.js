@@ -51,7 +51,7 @@ const displayYourMovies = Object.create(null, {
                                         //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
                                         $(`#movie_${currentMovie.id}`).addClass("unwatched").append(`
                                             <div>
-                                                <a href="#" id="movieWatched">Watched</a>
+                                                <a href="#" id="movieWatched_${currentMovie.id}">Watched</a>
                                             </div>
                                             `)
                                     }
