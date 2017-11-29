@@ -1,0 +1,89 @@
+#welcomePage {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 
+    "welcomeText"
+    ;
+}
+
+#genericWelcomeWrapper {
+    display: subgrid;
+    grid-area: welcomeText;
+    margin: 2em;
+    grid-template-areas: "welcomeBanner";
+    background-color: lightgrey;
+}
+
+#welcomeTextId {
+    grid-area: welcomeBanner;
+    border: solid 4px rgba(54, 54, 54, 0.568);
+    margin: 2em;
+    padding: 2em;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+#welcomeSpacerDivId {
+    display: subgrid;
+    grid-area: welcomeText;
+    margin: 2em;
+    padding: 3em;
+    background-color: lightgrey;
+    grid-template-rows: 10% 80% 10%;
+    grid-auto-columns: 10% 80% 10%;
+    grid-template-areas: 
+    ". . ."
+    ". signIn ."
+    ". . ."
+    ;
+}
+
+#welcomeDiv {
+    display: grid;
+    grid-area: signIn;
+    border: solid 4px rgba(43, 42, 42, 0.753);
+    padding: 3em;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-rows: 15% 10% 15% 10% 25% 25%;
+    grid-template-areas: 
+    ". emailLabel ."
+    ". emailInput ."
+    ". passwordLabel ."
+    ". passwordInput ."
+    ". buttona ."
+    ". buttonb ."
+    ; 
+}
+
+#emailLabelId {
+    grid-area: emailLabel;
+    text-align: center;   
+    border-bottom: solid 3px rgba(43, 42, 42, 0.753);
+    
+}
+
+#userEmailInput {
+    grid-area: emailInput;
+}
+
+#passwordLabelId {
+    grid-area: passwordLabel;
+    text-align: center;    
+    border-bottom: solid 3px rgba(43, 42, 42, 0.753);
+    
+}
+
+#passwordInput {
+    grid-area: passwordInput;
+}
+
+#signInButton {
+    margin: .5em;
+    grid-area: buttona;
+}
+
+#signUpButton {
+    margin: .5em;
+    grid-area: buttonb;
+}
+

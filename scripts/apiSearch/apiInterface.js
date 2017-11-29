@@ -11,9 +11,16 @@ const apiInterface = Object.create(null,{
     "displayInput": {
         value: function() {
             const searchInputEl = $("#findNewMovies")
+            $("#content").html("")
+            searchInputEl.html("")
             searchInputEl.append("<input id='userSearch' type='text' placeholder='Search'>")
             searchInputEl.append("<button id='searchApi'>Search</button>")
             $("#searchApi").on("click", apiInterface.search)
+            $("#userSearch").on("keyup", function(e){
+                if(e.keyCode === 13){
+                    apiInterface.search()
+                }
+            })
         }
     },
     //method to query the API and store the returned array into the cache
@@ -33,9 +40,9 @@ const apiInterface = Object.create(null,{
                         apiInterface.cache = searchResult.results  
                         console.log(apiInterface.cache)
                         apiInterface.displayResults()
+                    }).catch(function(error) {
+                        alert("Please enter a valid movie title")
                     })
-                
-    
             }
             searchMovie(userSearchInput)
         }},

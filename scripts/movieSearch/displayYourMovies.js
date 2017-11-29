@@ -4,6 +4,7 @@
 const $ = require("jquery")
 const movieCard = require("./movieCard") //builds the cards to display the movies
 const mainDB = require("./movieFactory") //gets the database
+const movieWatched = require("./movieWatched")
 
 const displayYourMovies = Object.create(null, {
     "init": {
