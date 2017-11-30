@@ -73,7 +73,7 @@ const movieCard = (movie, user) => {
             //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
             movieEl.addClass("unwatched").append(`
         <div>
-            <a href="#" id="movieWatched_${movie.id}" class="watchLink">I watched this movie</a>
+            <a href="#" id="movieWatched_${movie.id}" class="watchLink" data-toggle="modal" data-target="#myModal">I watched this movie</a>
         </div>
         `)
         }
