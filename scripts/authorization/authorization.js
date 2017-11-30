@@ -145,6 +145,8 @@ const auth = Object.create(null, {
             // invoke the firebase authorization log out user function
 
             firebase.auth().signOut().then(function() {
+                $("#content").html("")
+                $("#findNewMovies").html("")
                 // Sign-out successful.
             }).catch(function(error) {
                 // An error happened.
