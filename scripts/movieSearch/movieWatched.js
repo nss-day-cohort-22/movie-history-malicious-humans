@@ -3,7 +3,8 @@ const trackedMoviesFactory = require("../addMovie/trackedMoviesFactory")
 
 const user = require("../authorization/authorization")
 const firebase = require("firebase")
-const modalOutputEl = $("#modal")
+const modalOutputEl = $("#myModal .modal-body")
+const modalOutputElTitle = $("#myModal .modal-title")
 
 let movieWatched = null
 function watchedModal(e){
@@ -14,19 +15,22 @@ function watchedModal(e){
             return movie.id === parseInt(e.target.id.split("_")[1])
             
         })
+        // adjusting title
+        modalOutputElTitle.addClass("reviewTitle")
+        modalOutputElTitle.html(`How did you like ${movieWatched.title}?`)
         modalString = 
         `
-        <h2 class = "reviewTitle">How did you like ${movieWatched.title}?</h2>
+        
         <div id="rating${movieWatched.id}">
-            <span class="star"><i id="rating${movieWatched.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star"><i id="rating${movieWatched.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
             </span>
         </div>
         `
