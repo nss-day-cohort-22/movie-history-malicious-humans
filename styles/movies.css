@@ -20,3 +20,8 @@
     float: right;
     font-size: 1.5rem
 }
+
+.delete:hover {
+    cursor: pointer;
+    color: gray;
+}

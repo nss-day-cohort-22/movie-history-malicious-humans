@@ -25,6 +25,28 @@ const userMoviesFactory = Object.create(null, {
             })
         }
     },
+    // following datastructure is an object of properties that consist of keys and arrays as the values of each property 
+    "allWithFireBaseKey": {
+        value: function () {
+            return $.ajax({
+                "url": `${firebaseURL}/.json`,
+                "method": "GET"
+            }).then(userMovies => {
+                // this.cache = Object.keys(movies)
+                //     .map(key => {
+                //         movies[key].id = key
+                //         return movies[key]
+                //     })
+                // const array = $.map(userMovies, function(value, index) {
+                //     return [value]
+                return userMovies
+            })
+            // this.cache = array
+
+            // return this.cache
+            // })
+        }
+    },
     "add": {
         value: function (userMovieObj) {
             return firebase.auth().currentUser.getToken(true)
@@ -35,6 +57,14 @@ const userMoviesFactory = Object.create(null, {
                         "data": JSON.stringify(userMovieObj)
                     })
                 })
+        }
+    },
+    "remove": {
+        value: function (userMovieKey) {
+            return $.ajax({
+                "url": `${firebaseURL}/${userMovieKey}/.json`,
+                "method": "DELETE"
+            })
         }
     },
     // "replace": {
