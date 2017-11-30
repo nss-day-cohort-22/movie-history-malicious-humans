@@ -60,7 +60,6 @@ const displayYourMovies = Object.create(null, {
     },
     "watched": { 
         value: function () {
-            displayYourMovies.init()
             const watchedMovie = $(".watched")
             const unwatchedMovie = $(".unwatched")
 

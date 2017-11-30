@@ -1,12 +1,14 @@
 const $ = require("jquery")
 const watched = require("./movieWatched")
-
+//function that allows the user to select a 1 to 5 star rating.
 function rating(e) {
     let grandparentId = ""
     let starId = ""
+    //checks to see if the event is a "click" if it is it gets the star id from the target.id of the click event.
     if(e.type==="click" && e.target.parentNode.parentNode.className === "movieRating"){
         grandparentId = e.target.parentNode.parentNode.id
         starId = parseInt(e.target.id.split("-")[1])
+        //each time a star is clicked the stars need to initially revert back to being all empty.
         const initialHTML = `<span class="star"><i id="${grandparentId}-1" class="fa fa-star-o" aria-hidden="true"></i>
          </span>
          <span class="star"><i id="${grandparentId}-2" class="fa fa-star-o" aria-hidden="true"></i>
@@ -18,11 +20,14 @@ function rating(e) {
          <span class="star" ><i id="${grandparentId}-5"class="fa fa-star-o" aria-hidden="true"></i>
          </span>`
         $(`#${grandparentId}`).html(initialHTML)
+
+        //then it replaces the correct number of empty stars with filled stars based on the id of the star clicked.
         for (let i = 1; i <= starId; i++) {
             $(`#${grandparentId}-${i}`).replaceWith(`<i id= "${grandparentId}-${i}" class="fa fa-star" aria-hidden="true"></i>`)
              
         }
     } else{
+        //if the paramets is not an event, it can also accept an object what will allow us to display the ratings once we pull the data from the database.
         starId = e.id
         grandparentId = e.gpId
         for (let x = 1; x <= starId; x++) {
@@ -36,23 +41,3 @@ function rating(e) {
 }
 
 module.exports = rating 
-// rating({"id":3,
-//     "gpId":"rating1"})
-
-// $("#rating1").on("click", rating)
-// $("body").on("click", function(event){
-//     if(event.target.parentNode.parentNode.id.startsWith("rating")){
-//         rating(event)
-//         watched(event)
-//     }
-// })
-
-
-// function starHover(e) {
-//     const hoveredStar = parseInt(e.target.id)
-//     for (let i = 1; i <= hoveredStar; i++) {
-//         $(`#${i}`).replaceWith("<span><i class=\"fa fa-star\" aria-hidden=\"true\"></i></span>"
-//         )
-        
-//     }
-// }

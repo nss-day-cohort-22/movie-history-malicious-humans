@@ -6,6 +6,8 @@ const firebase = require("firebase")
 const modalOutputEl = $("#modal")
 
 let movieWatched = null
+
+//display a modal that prompts the user to rate the movie
 function watchedModal(e){
     modalOutputEl.html("")
     let modalString = ""
@@ -35,6 +37,7 @@ function watchedModal(e){
     
 }
 
+//function that allows the user to select between 1 and 5 stars and when they click a star it initiates an PUT request updating the data in the database to reflect the watched status and adds the rating.
 function watched(event){
     const rating = require("./starRating")
     rating(event)
@@ -47,17 +50,15 @@ function watched(event){
         "url": "https://movie-nutshell.firebaseio.com/userMovie/.json",
         "method": "GET"
     }).then(userMovies => {
-        console.log(userMovies)
+
         for( const key in userMovies){
             if(userMovies[key].movie_id==movieId && userMovies[key].user_id == userId){
                 updateUserMovie = [key, userMovies[key]]
-                console.log("Test 2")
             }
         }
         return updateUserMovie
     })
         .then( updateUserMovie => {
-            console.log(updateUserMovie)
             updateUserMovie[1].watched = true
             updateUserMovie[1].rating = parseInt(event.target.id.split("-")[1])
             firebase.auth().currentUser.getToken(true)
@@ -76,7 +77,7 @@ function watched(event){
         })
 }
 
-
+//event listeners on the body listening for clicks events
 $("body").on("click", function(event){
     if(event.target.id.startsWith("movieWatched_")){
         watchedModal(event)
