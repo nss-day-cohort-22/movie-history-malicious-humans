@@ -40,7 +40,8 @@ function watched(event){
     rating(event)
     const userId= user.activeUser.uid
     const movieId = movieWatched.id 
-    $(`#movie_${movieId}`).hide("slow")
+    $(`#movie_${movieId}`).hide("slow").removeClass("unwatched").addClass("watched")
+
     let updateUserMovie = null
     $.ajax({
         "url": "https://movie-nutshell.firebaseio.com/userMovie/.json",

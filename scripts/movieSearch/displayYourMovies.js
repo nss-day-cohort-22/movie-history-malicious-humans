@@ -60,6 +60,7 @@ const displayYourMovies = Object.create(null, {
     },
     "watched": { 
         value: function () {
+            displayYourMovies.init()
             const watchedMovie = $(".watched")
             const unwatchedMovie = $(".unwatched")
 
@@ -67,6 +68,9 @@ const displayYourMovies = Object.create(null, {
             
             if(watchedMovie.hasClass("hidden") === true){ //if the watched movies have a class of hidden, remove that class
                 watchedMovie.removeClass("hidden")
+            }
+            if(watchedMovie.is(":hidden")){
+                watchedMovie.show()
             }
         }
     },
