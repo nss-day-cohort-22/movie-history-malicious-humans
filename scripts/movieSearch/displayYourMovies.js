@@ -69,7 +69,7 @@ const displayYourMovies = Object.create(null, {
                     } //end of for/in userMoviesDB
                     displayYourMovies.cacheMovies = savedMovieArray
                     displayYourMovies.cacheRelationShips = savedMovieRelationships
-                    rowMaker.displaySavedMovies(displayYourMovies.cacheMovies)
+                    rowMaker.cardArrayBuilder(displayYourMovies.cacheMovies, rowMaker.displaySavedMovies)
                     
                 })//end of user ajax
             })//end of movie ajax
