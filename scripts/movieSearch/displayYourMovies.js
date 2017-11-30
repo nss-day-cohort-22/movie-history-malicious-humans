@@ -81,7 +81,7 @@ const displayYourMovies = Object.create(null, {
             const unwatchedMovie = $(".unwatched")
 
             watchedMovie.addClass("hidden") //hide watched movies
-            
+        
             if(unwatchedMovie.hasClass("hidden") === true){ //if the unwatched movies have a class of hidden, remove that class
                 unwatchedMovie.removeClass("hidden")
             }

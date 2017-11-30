@@ -40,7 +40,22 @@ const movieCard = (movie, user) => {
 
         //closing tags for string
         movieString += `
-                </ul>        
+        
+                   
+        
+                </ul>
+                <div id="rating${movie.id}" class = "hidden">
+                <span class="star"><i id="rating${movie.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+                <span class="star"><i id="rating${movie.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+                <span class="star" ><i id="rating${movie.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+                <span class="star" ><i id="rating${movie.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+                <span class="star" ><i id="rating${movie.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+                </div>        
             </div>
         </section> 
         `
@@ -51,20 +66,8 @@ const movieCard = (movie, user) => {
         const movieEl = $(`#movie_${movie.id}`)
         if(user.watched === true) {
             //adds movie rating and adds the class of "watched" to the movie card 
-            movieEl.addClass("watched").append(`
-        <div id="rating${movie.id}">
-        <span class="star"><i id="rating${movie.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
-        </span>
-        <span class="star"><i id="rating${movie.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
-        </span>
-        <span class="star" ><i id="rating${movie.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
-        </span>
-        <span class="star" ><i id="rating${movie.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
-        </span>
-        <span class="star" ><i id="rating${movie.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
-        </span>
-        </div>
-        `)
+            movieEl.addClass("watched")
+            $(`#rating${movie.id}`).removeClass("hidden")
             rating({
                 "id":user.rating,
                 "gpId": `rating${movie.id}`
