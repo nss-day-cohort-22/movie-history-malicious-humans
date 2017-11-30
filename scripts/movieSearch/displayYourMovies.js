@@ -53,6 +53,7 @@ const displayYourMovies = Object.create(null, {
                     } //end of for/in userMoviesDB
                     
                     movieFilter(yourMovieList) //adds movie filter
+                
                     
                 })//end of user ajax
             })//end of movie ajax
@@ -60,10 +61,9 @@ const displayYourMovies = Object.create(null, {
     },
     "watched": { 
         value: function () {
-            displayYourMovies.init()
             const watchedMovie = $(".watched")
             const unwatchedMovie = $(".unwatched")
-
+            
             unwatchedMovie.addClass("hidden") //hide unwatched movies
             
             if(watchedMovie.hasClass("hidden") === true){ //if the watched movies have a class of hidden, remove that class
@@ -72,6 +72,7 @@ const displayYourMovies = Object.create(null, {
             if(watchedMovie.is(":hidden")){
                 watchedMovie.show()
             }
+
         }
     },
     "unwatched": { //if watched value is false then display movie

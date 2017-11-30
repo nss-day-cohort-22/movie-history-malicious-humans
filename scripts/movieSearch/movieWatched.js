@@ -5,6 +5,7 @@ const user = require("../authorization/authorization")
 const firebase = require("firebase")
 const modalOutputEl = $("#myModal .modal-body")
 const modalOutputElTitle = $("#myModal .modal-title")
+const displayYourMovies = $("displayYourMovies")
 
 let movieWatched = null
 function watchedModal(e){
@@ -18,7 +19,7 @@ function watchedModal(e){
         // adjusting title
         modalOutputElTitle.addClass("reviewTitle")
         modalOutputElTitle.html(`How did you like ${movieWatched.title}?`)
-        modalString = 
+        modalString =
         `
         
         <div id="rating${movieWatched.id}">
@@ -45,6 +46,7 @@ function watched(event){
     const userId= user.activeUser.uid
     const movieId = movieWatched.id 
     $(`#movie_${movieId}`).hide("slow").removeClass("unwatched").addClass("watched")
+
 
     let updateUserMovie = null
     $.ajax({
@@ -87,6 +89,7 @@ $("body").on("click", function(event){
     }else {
         if(event.target.parentNode.parentNode.id.startsWith("rating")){
             watched(event)
+
         }} 
 })
 
