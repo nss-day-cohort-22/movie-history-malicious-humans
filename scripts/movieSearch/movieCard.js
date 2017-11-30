@@ -2,6 +2,7 @@
 //functionality: allows the movies from the database to be written to the DOM
 
 const $ = require("jquery")
+const removeMovieFromWatchList = require("../removeMovieFromWatchList/removeMovie")
 const rating = require("./starRating")
 
 const movieCard = (movie, user) => {
@@ -77,8 +78,13 @@ const movieCard = (movie, user) => {
         `)
         }
 
+        removeMovieFromWatchList(movie.id)
     }) 
 
+    // test
+    // $(`#delete_${movie.id}`).on("click", () => {
+    //     console.log("delete button clicked")
+    // })
 }
 
 module.exports =  movieCard
