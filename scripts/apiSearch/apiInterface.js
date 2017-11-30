@@ -1,5 +1,6 @@
 const $ = require("jquery")
 const addAddToWatchListListener = require("../addMovie/addAddToWatchListListener")
+const rowMaker = require("../utility/rowMaker")
 
 const apiInterface = Object.create(null,{
     //cache to hold the data returned from the external API
@@ -48,26 +49,11 @@ const apiInterface = Object.create(null,{
         }},
     "displayResults": {
         value: function() {
-            const movieOutputEl = $("#content")
-            //store the value of the returned movies
+            
             const returnedMovies = apiInterface.cache
-    
-            let movieHTML = ""
-            //iterate over the array and build a DOM string that will print the movie cards to the DOM
-            returnedMovies.forEach(movie => {
-                const posterPath = movie.poster_path
-                const movieYear = movie.release_date.slice(0,4)
-                movieHTML += `
-            <section class = "movieCard" id = "${movie.id}">
-                <img class = "moviePoster" src = "https://image.tmdb.org/t/p/w150${posterPath}">
-                <h2 class = "movieTitle">${movie.title}</h2>
-                <h3 class = "movieYear">${movieYear}</h3>
-                <button class= "addMovie">Add to Watch List</button>
-            </section>
-            `
-            })
-            //print the movie cards to the DOM
-            movieOutputEl.html(movieHTML)
+            
+            rowMaker.displaySearchedMovies(returnedMovies)
+          
             addAddToWatchListListener(this.cache)
         }
     }
