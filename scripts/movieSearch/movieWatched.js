@@ -3,7 +3,9 @@ const trackedMoviesFactory = require("../addMovie/trackedMoviesFactory")
 
 const user = require("../authorization/authorization")
 const firebase = require("firebase")
-const modalOutputEl = $("#modal")
+const modalOutputEl = $("#myModal .modal-body")
+const modalOutputElTitle = $("#myModal .modal-title")
+const displayYourMovies = $("displayYourMovies")
 
 let movieWatched = null
 
@@ -16,19 +18,22 @@ function watchedModal(e){
             return movie.id === parseInt(e.target.id.split("_")[1])
             
         })
-        modalString = 
+        // adjusting title
+        modalOutputElTitle.addClass("reviewTitle")
+        modalOutputElTitle.html(`How did you like ${movieWatched.title}?`)
+        modalString =
         `
-        <h2 class = "reviewTitle">How did you like ${movieWatched.title}?</h2>
-        <div class = "movieRating" id="rating${movieWatched.id}">
-            <span class="star"><i id="rating${movieWatched.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
+        
+        <div id="rating${movieWatched.id}">
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star"><i id="rating${movieWatched.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
-            <span class="star" ><i id="rating${movieWatched.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="star" data-dismiss="modal"><i id="rating${movieWatched.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
             </span>
         </div>
         `
@@ -44,6 +49,13 @@ function watched(event){
     const userId= user.activeUser.uid
     const movieId = movieWatched.id 
     $(`#movie_${movieId}`).hide("slow").removeClass("unwatched").addClass("watched")
+    $(`#movieWatched_${movieId}`).addClass("hidden")
+    rating({
+        "id": `${parseInt(event.target.id.split("-")[1])}`,
+        "gpId": `${event.target.parentNode.parentNode.id}`
+    })
+    
+
 
     let updateUserMovie = null
     $.ajax({
@@ -84,6 +96,7 @@ $("body").on("click", function(event){
     }else {
         if(event.target.parentNode.parentNode.id.startsWith("rating")){
             watched(event)
+
         }} 
 })
 
