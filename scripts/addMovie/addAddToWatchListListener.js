@@ -6,17 +6,18 @@ const createUserMovieObj = require("./createUserMovieObj")
 const addAddToWatchListListener = (cache) => {
     
     $(".addMovie").on("click", (e) => {
+        $(`#${e.target.parentNode.id}`).hide("slow")
         const movieId = e.target.parentNode.id
         
         const movieObj = cache.find((movie) => {
             return movie.id == movieId
         })
-
+        
         trackedMoviesFactory.all().then(movies => {
             const movieInDb = movies.find((movie) => {
                 return movie.id == movieId
             })
-    
+            
             if(movieInDb) {
                 // assign movieId to user in userMovie db in firebase
                 userMoviesFactory.add(createUserMovieObj(movieId))
@@ -29,7 +30,7 @@ const addAddToWatchListListener = (cache) => {
                 userMoviesFactory.add(createUserMovieObj(movieId))
             }
         })
-        
+    
     })
 }
 

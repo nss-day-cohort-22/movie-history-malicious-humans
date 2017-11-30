@@ -4,9 +4,9 @@ const watched = require("./movieWatched")
 function rating(e) {
     let grandparentId = ""
     let starId = ""
-    if(e.type==="click"){
-        starId = parseInt(e.target.id.split("-")[1])
+    if(e.type==="click" && e.target.parentNode.parentNode.className === "movieRating"){
         grandparentId = e.target.parentNode.parentNode.id
+        starId = parseInt(e.target.id.split("-")[1])
         const initialHTML = `<span class="star"><i id="${grandparentId}-1" class="fa fa-star-o" aria-hidden="true"></i>
          </span>
          <span class="star"><i id="${grandparentId}-2" class="fa fa-star-o" aria-hidden="true"></i>
@@ -30,6 +30,7 @@ function rating(e) {
             
         }
     }
+    
     
 
 }
@@ -55,4 +56,3 @@ module.exports = rating
         
 //     }
 // }
-
