@@ -5,14 +5,11 @@ const trackedMoviesFactory = require("../addMovie/trackedMoviesFactory")
 const movieInUserMovies = require("./movieInUserMovies")
 
 const removeMovieFromWatchList = (movieId) => {
-    // console.log("hello")
+    
     $(`#delete_${movieId}`).on("click", () => {
-        // console.log("delete button clicked")
+
         userMoviesFactory.allWithFireBaseKey().then((movies) => {
-            // const movieObj = movies.find((movie) => {
-            //     return movie.movie_id == movieId
-            // })
-            // console.log(movieObj)
+        
             for(let key in movies) {
                 console.log(key)
                 const user_id = userId.activeUser.uid
@@ -22,32 +19,13 @@ const removeMovieFromWatchList = (movieId) => {
                     console.log(movie)
                     console.log(`object to be deleted key: ${key}`)
                     userMoviesFactory.remove(key)
-                    // userMoviesFactory.remove(key).then(() => {
-                    //     userMoviesFactory.allWithFireBaseKey().then(latestMovies => {
-                    //         const movieInUserMoviesDb = movieInUserMovies(movieId)
-                    //         if(movieInUserMoviesDb == null) {
-                    //             for(let trackedMovieKey in latestMovies) {
-                    //                 const trackedMovie = latestMovies[trackedMovieKey] 
-                    //                 if(trackedMovie.id == movieId) {
-                    //                     trackedMoviesFactory.remove(trackedMovieKey)
-                    //                 }
-        
-                    //             }
-                    //         }
-
-                    //     })
-                    // })
+                    
                     $(`#movie_${movieId}`).hide("slow", function(){ $(`#movie_${movieId}`).remove() })
-                    // $(`#movie_${movieId}`).remove()
 
                 }
             }
-            // console.log(movies)
         })
     })
-    // userMoviesFactory.all().then(userMovies => {
-    //     console.log(userMovies)
-    // })
 }
 
 module.exports = removeMovieFromWatchList
