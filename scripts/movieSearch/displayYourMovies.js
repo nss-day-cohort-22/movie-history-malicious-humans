@@ -7,8 +7,23 @@ const mainDB = require("./movieFactory") //gets the database
 const movieWatched = require("./movieWatched")
 
 const displayYourMovies = Object.create(null, {
+    "cacheMovies": {
+        value: null,
+        writable: true
+    },
+
+    "cacheRelationShips": {
+        value: null,
+        writable: true
+    },
+
+
     "init": {
         value: function () {
+            const rowMaker = require("../utility/rowMaker")
+            let savedMovieArray = []
+            let savedMovieRelationships = []
+
             mainDB.trackedMovies().then( movieDB => {
                 const authorized = require("../authorization/authorization")                
                 
@@ -16,6 +31,7 @@ const displayYourMovies = Object.create(null, {
                 $("#findNewMovies").html("") //resets findNewMovies search bar if it's present
                 
                 mainDB.userMovie().then( userMoviesDB => {
+
                     const searchButtons = `
                         <button id="unwatchedMovies">Show Unwatched</button> 
                         <button id="watchedMovies">Show Watched</button>
@@ -39,6 +55,10 @@ const displayYourMovies = Object.create(null, {
             
                                     //use the imported movieCard function to create a movie card and append it to the content section of the DOM 
                                     movieCard(currentMovie, yourMovie)
+
+                                    savedMovieArray.push(currentMovie)
+                                    savedMovieRelationships.push(yourMovie)
+
                                     
                                 } //end of if currentMovie.id === yourMovie.id
                             
@@ -47,6 +67,10 @@ const displayYourMovies = Object.create(null, {
                         } //end of if activeUserId === yourMovie.userId
                         
                     } //end of for/in userMoviesDB
+                    displayYourMovies.cacheMovies = savedMovieArray
+                    displayYourMovies.cacheRelationShips = savedMovieRelationships
+                    rowMaker.displaySavedMovies(displayYourMovies.cacheMovies)
+                    
                 })//end of user ajax
             })//end of movie ajax
         }

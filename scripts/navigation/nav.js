@@ -68,7 +68,7 @@ const navBuilder = Object.create(null, {
 
             // require modules that will be needed within the scope of 
             // this function
-
+            const displayYourMovies = require("../movieSearch/displayYourMovies")
             const apiInterface = require("../apiSearch/apiInterface")
             const userMovies = require("../movieSearch/displayYourMovies")
             let auth = require("../authorization/authorization")

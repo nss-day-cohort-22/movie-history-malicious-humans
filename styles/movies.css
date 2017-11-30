@@ -1,6 +1,15 @@
+#content {
+    display: block;
+    margin: .5em;
+    padding: 1em;
+    background-color: lightgrey;
+}
+
 .rowWrapper {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    padding: 1em;
+    border-bottom: solid 3px rgba(43, 42, 42, 0.753);    
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
     "movieOne movieTwo movieThree"
     ;
@@ -8,22 +17,62 @@
 
 .rowWrapper:nth-child(1) {
     grid-area: movieOne;
+    margin: .3em;
 }
 
 .rowWrapper:nth-child(2) {
     grid-area: movieTwo;
+    margin: .3em;
+    
 }
 
 .rowWrapper:nth-child(3) {
     grid-area: movieThree;
+    margin: .3em;
+    
 }
 
 .movieCard {
+    display: subgrid;
+    justify-self: center;
     border: 3px solid #dc3545;
-    padding: 10px;
-    margin: auto;
-    margin-top: 5px;
-    width: 50%
+    padding: 1em;
+    grid-template-rows: 50% 15% 10% 25%;
+    grid-template-areas: 
+    "poster"
+    "title"
+    "year"
+    "addButton"
+    ;
+}
+
+.moviePoster {
+    grid-area: poster;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 18em;
+    width: 12em;
+    
+}
+
+.movieTitle {
+    grid-area: title;
+    text-align: center;
+    border-bottom: solid 3px rgba(43, 42, 42, 0.753);        
+}
+
+.movieYear {
+    grid-area: year;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.addMovie {
+    grid-area: addButton;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .movieCast {
