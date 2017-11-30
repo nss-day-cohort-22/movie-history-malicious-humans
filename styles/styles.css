@@ -2,4 +2,6 @@
     display: none;
 }
 
-
+.star i{
+    color: orange;
+}
