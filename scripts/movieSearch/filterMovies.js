@@ -1,7 +1,7 @@
 //author: Kristen
 //functionality: allows user to filter through their movies to find a specific movie
 
-const $ = require("jquery") 
+const $ = require("jquery")
 
 const filterPage = (movieArray) => {
     const searchEl = $("#findNewMovies")
@@ -20,15 +20,15 @@ const filterPage = (movieArray) => {
             const userFilterString = event.target.value.toLowerCase()
 
             let filteredList = movieArray.filter(filteredItem => { 
-                const movieTitle = filteredItem.title
+                const movieTitle = filteredItem.title //gets the title of the current movie
                 
-                const containsString = movieTitle.toLowerCase().includes(userFilterString)
-                const filteredMovie = $(`#movie_${filteredItem.id}`)
+                const containsString = movieTitle.toLowerCase().includes(userFilterString) //determines if the movieTitle contains what was searched for (returns true or false)
+                const filteredMovie = $(`#movie_${filteredItem.id}`) //gets the corresponding movieCard
                 
                 if(containsString === false) {
-                    filteredMovie.addClass("hidden")
+                    filteredMovie.addClass("hidden") //if the title is not what is searched for add a class of hiddne
                 } else {
-                    if(filteredMovie.hasClass("hidden")) {
+                    if(filteredMovie.hasClass("hidden")) { //if the title is what was searched for but has a class of hidden, remove the class
                         filteredMovie.removeClass("hidden")
                     }
                 }
@@ -37,11 +37,11 @@ const filterPage = (movieArray) => {
 
 
         } else {
-            movieArray.filter(filteredItem => {
-                const allMovies = $(`#movie_${filteredItem.id}`)
+            movieArray.filter(filteredItem => { //if the length of the search is less than 3 remove the class of hidden from all movieCards
+                const movie = $(`#movie_${filteredItem.id}`)
                 
-                if(allMovies.hasClass("hidden")) {
-                    allMovies.removeClass("hidden")
+                if(movie.hasClass("hidden")) {
+                    movie.removeClass("hidden")
                 }
                 
             })
