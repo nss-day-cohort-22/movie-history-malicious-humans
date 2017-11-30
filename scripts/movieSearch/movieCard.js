@@ -3,6 +3,7 @@
 
 const $ = require("jquery")
 const removeMovieFromWatchList = require("../removeMovieFromWatchList/removeMovie")
+const rating = require("./starRating")
 
 const movieCard = (movie, user) => {
     const movieId = movie.id
@@ -51,23 +52,36 @@ const movieCard = (movie, user) => {
         if(user.watched === true) {
             //adds movie rating and adds the class of "watched" to the movie card 
             movieEl.addClass("watched").append(`
-        <div>
-            <p class="movieRating">Rating: ${user.rating}</p> //change to display stars
+        <div id="rating${movie.id}">
+        <span class="star"><i id="rating${movie.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+        <span class="star"><i id="rating${movie.id}-2" class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+        <span class="star" ><i id="rating${movie.id}-3" class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+        <span class="star" ><i id="rating${movie.id}-4" class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+        <span class="star" ><i id="rating${movie.id}-5"class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
         </div>
         `)
+            rating({
+                "id":user.rating,
+                "gpId": `rating${movie.id}`
+            })
         } else {
             //adds link to mark when user watches the movie and adds the class of "unwatched" to the movie card
             movieEl.addClass("unwatched").append(`
         <div>
-            <a href="#" id="movieWatched_${movie.id}" class="watchLink">Watched</a>
+            <a href="#" id="movieWatched_${movie.id}" class="watchLink">I watched this movie</a>
         </div>
         `)
         }
 
+        removeMovieFromWatchList(movie.id)
     }) 
 
     // test
-    removeMovieFromWatchList(movie.id)
     // $(`#delete_${movie.id}`).on("click", () => {
     //     console.log("delete button clicked")
     // })

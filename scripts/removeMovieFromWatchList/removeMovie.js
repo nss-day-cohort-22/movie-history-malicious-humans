@@ -37,7 +37,8 @@ const removeMovieFromWatchList = (movieId) => {
 
                     //     })
                     // })
-                    $(`#movie_${movieId}`).remove()
+                    $(`#movie_${movieId}`).hide("slow", function(){ $(`#movie_${movieId}`).remove() })
+                    // $(`#movie_${movieId}`).remove()
 
                 }
             }
