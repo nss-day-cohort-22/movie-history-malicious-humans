@@ -17,7 +17,7 @@ function watchedModal(e){
         modalString = 
         `
         <h2 class = "reviewTitle">How did you like ${movieWatched.title}?</h2>
-        <div id="rating${movieWatched.id}">
+        <div class = "movieRating" id="rating${movieWatched.id}">
             <span class="star"><i id="rating${movieWatched.id}-1" class="fa fa-star-o" aria-hidden="true"></i>
             </span>
             <span class="star"><i id="rating${movieWatched.id}-2" class="fa fa-star-o" aria-hidden="true"></i>

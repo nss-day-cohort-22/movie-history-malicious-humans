@@ -2,9 +2,10 @@ const $ = require("jquery")
 const watched = require("./movieWatched")
 
 function rating(e) {
+    
     let grandparentId = ""
     let starId = ""
-    if(e.type==="click"){
+    if(e.type==="click" && e.target.parentNode.parentNode.className === "movieRating"){
         starId = parseInt(e.target.id.split("-")[1])
         grandparentId = e.target.parentNode.parentNode.id
         const initialHTML = `<span class="star"><i id="${grandparentId}-1" class="fa fa-star-o" aria-hidden="true"></i>
@@ -30,6 +31,7 @@ function rating(e) {
             
         }
     }
+    
     
 
 }
