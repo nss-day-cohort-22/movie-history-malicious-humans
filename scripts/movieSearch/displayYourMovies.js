@@ -5,6 +5,7 @@ const $ = require("jquery")
 const movieCard = require("./movieCard") //builds the cards to display the movies
 const mainDB = require("./movieFactory") //gets the database
 const movieWatched = require("./movieWatched")
+const movieFilter = require("./filterMovies")
 
 const displayYourMovies = Object.create(null, {
     "init": {
@@ -24,13 +25,14 @@ const displayYourMovies = Object.create(null, {
                     $("#watchedMovies").on("click", this.watched) //add function to button
                     $("#unwatchedMovies").on("click", this.unwatched) //add function to button
                     
+                    let yourMovieList = [] //array so that users can filter through their movies
                     
                     for(let key in userMoviesDB) { //iterate through user/movie relationships
                         let yourMovie = userMoviesDB[key]
                         const activeUserId = authorized.activeUser.uid
 
                         if(activeUserId === yourMovie.user_id) { //the authorized user id is equal to the userId on the userMovie database
-                            
+
                             for(let mov in movieDB) { //iterate through the movies in the trackedMovies database
                                 let currentMovie = movieDB[mov]
                                 const yourMovieId = parseInt(yourMovie.movie_id) //changes string into an integer
@@ -39,14 +41,19 @@ const displayYourMovies = Object.create(null, {
             
                                     //use the imported movieCard function to create a movie card and append it to the content section of the DOM 
                                     movieCard(currentMovie, yourMovie)
+                                    yourMovieList.push(currentMovie) //adds movie to the yourMovieList array
                                     
                                 } //end of if currentMovie.id === yourMovie.id
+
                             
                             } //end of for/in movieDB
                             
                         } //end of if activeUserId === yourMovie.userId
                         
                     } //end of for/in userMoviesDB
+                    
+                    movieFilter(yourMovieList) //adds movie filter
+                    
                 })//end of user ajax
             })//end of movie ajax
         }
